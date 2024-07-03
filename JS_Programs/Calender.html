@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calender</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(45deg, #1d0000, #20205b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .container {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calender {
+            width: 300px;
+            height: 250px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+        }
+
+        .left,
+        .right {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            flex-direction: column;
+            letter-spacing: 1px;
+        }
+
+        .left {
+            width: 58%;
+        }
+
+        .right {
+            width: 42%;
+            background: #f4351e;
+            color: #fff;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        #date {
+            font-size: 70px;
+        }
+
+        #day {
+            font-size: 30px;
+        }
+
+        #month {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        #year {
+            font-size: 30px;
+        }
+        footer{
+            color: cyan;
+            font-size: 20px;
+            position: absolute;
+            bottom: 25%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="calender">
+            <div class="left">
+                <p id="date">01</p>
+                <p id="day">Sunday</p>
+            </div>
+            <div class="right">
+                <p id="month">January</p>
+                <p id="year">2024</p>
+            </div>
+        </div>
+    </div>
+<footer>Designed by RD</footer>
+
+
+    <script>
+        let date = document.getElementById("date");
+        let day = document.getElementById("day");
+        let month = document.getElementById("month");
+        let year = document.getElementById("year");
+
+        const today = new Date();
+
+        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        date.innerHTML = (today.getDate() < 10 ? "0" : "") + today.getDate();
+        day.innerHTML = weekdays[today.getDay()];
+        month.innerHTML = months[today.getMonth()];
+        year.innerHTML = today.getFullYear();
+
+    </script>
+</body>
+
+</html>
