@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sedan+SC&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Mate+SC&family=Salsa&family=Sedan+SC&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Roboto+Slab:wght@100..900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("image/BG.jpg"), url("https://c4.wallpaperflare.com/wallpaper/337/431/787/colorfu-4k-8k-hd-wallpaper-preview.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .headline {
+            margin: -20px 0px 20px 0px;
+            color: cyan;
+            font-family: "Sedan SC", serif;
+            font-size: 55px;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 450px;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            color: cyan;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 1px 3px 50px black,
+                0 0 50px black;
+        }
+
+        .instruction {
+            font-size: 25px;
+            color: yellow;
+            font-family: "Roboto Slab", serif;
+            font-weight: bold;
+            padding: 10px;
+            word-spacing: 1px;
+        }
+
+        .congratulation {
+            font-size: 25px;
+            font-family: "Mate SC", serif;
+            color: #00ffaa;
+            font-weight: bold;
+            word-spacing: 2px;
+            letter-spacing: 1.5px;
+            padding-bottom: 5px;
+        }
+
+        .correct {
+            font-size: 25px;
+            font-family: "Mate SC", serif;
+            color: orange;
+            font-weight: bold;
+            word-spacing: 2px;
+            letter-spacing: 1.5px;
+            padding-bottom: 5px;
+        }
+
+        .score {
+            font-size: 30px;
+            font-family: "Mate SC", serif;
+            color: cyan;
+            font-weight: bold;
+            word-spacing: 2px;
+            letter-spacing: 1.5px;
+            padding-bottom: 5px;
+        }
+
+        .number {
+            width: 300px;
+            height: 30px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            margin: 15px;
+            font-size: 20px;
+            padding: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+        }
+
+        .number::placeholder {
+            color: #031273;
+            padding: 5px;
+        }
+
+        .button {
+            padding: 10px 40px;
+            margin: 15px;
+            border: none;
+            outline: none;
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            font-size: 20px;
+            color: azure;
+        }
+
+        .button:hover {
+            color: #00ffd5;
+        }
+
+        .button:before {
+            content: "";
+            background: linear-gradient(45deg,
+                    #ff0000,
+                    #ff7300,
+                    #fffb00,
+                    #48ff00,
+                    #00ffd5,
+                    #002bff,
+                    #7a00ff,
+                    #ff00c8,
+                    #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            -webkit-filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing-button-85 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing-button-85 {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .button:after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .suggestion {
+            padding: 10px;
+            font-size: 20px;
+            font-family: "Mate SC", serif;
+            font-weight: bold;
+            word-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: #00ffaa;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .finish{
+            margin-top: -25px;
+            padding: 10px;
+            font-size: 20px;
+            font-family: "Mate SC", serif;
+            font-weight: bold;
+            word-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: #00ffaa;
+        }
+
+        .suggestion.show {
+            opacity: 1;
+        }
+
+        .name {
+            font-size: 20px;
+            color: cyan;
+            font-family: "Sedan SC", serif;
+        }
+
+        @media only screen and (max-width:580px) {
+            .headline {
+                font-size: 40px;
+            }
+
+            .container {
+                width: 400px;
+            }
+
+            .instruction {
+                font-size: 22px;
+            }
+        }
+
+        @media only screen and (max-width:410px) {
+            .headline {
+                font-size: 31px;
+            }
+
+            .container {
+                width: 320px;
+            }
+
+            .instruction {
+                font-size: 16px;
+            }
+
+            .suggestion{
+                font-size: 15px;
+                padding: 10px 3px;
+            }
+
+            .congratulation {
+                font-size: 17px;
+            }
+        }
+
+        .show {
+            animation: none !important;
+        }
+
+        .btn {
+            margin: 5px 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 13rem;
+            overflow: hidden;
+            height: 3rem;
+            background-size: 300% 300%;
+            backdrop-filter: blur(1rem);
+            border-radius: 5rem;
+            transition: 0.5s;
+            animation: gradient_301 5s ease infinite;
+            border: double 4px transparent;
+            background-image: linear-gradient(#212121, #212121), linear-gradient(137.48deg, #ffdb3b 10%, #FE53BB 45%, #8F51EA 67%, #0044ff 87%);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+        }
+
+        #container-stars {
+            position: absolute;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            transition: 0.5s;
+            backdrop-filter: blur(1rem);
+            border-radius: 5rem;
+        }
+
+        strong {
+            z-index: 2;
+            font-family: 'Avalors Personal Use';
+            font-size: 12px;
+            letter-spacing: 5px;
+            color: #FFFFFF;
+            text-shadow: 0 0 4px white;
+        }
+
+        #glow {
+            position: absolute;
+            display: flex;
+            width: 12rem;
+        }
+
+        .circle {
+            width: 100%;
+            height: 30px;
+            filter: blur(2rem);
+            animation: pulse_3011 4s infinite;
+            z-index: -1;
+        }
+
+        .circle:nth-of-type(1) {
+            background: rgba(254, 83, 186, 0.636);
+        }
+
+        .circle:nth-of-type(2) {
+            background: rgba(142, 81, 234, 0.704);
+        }
+
+        .btn:hover #container-stars {
+            z-index: 1;
+            background-color: #212121;
+        }
+
+        .btn:hover {
+            transform: scale(1.1)
+        }
+
+        .btn:active {
+            border: double 4px #FE53BB;
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            animation: none;
+        }
+
+        .btn:active .circle {
+            background: #FE53BB;
+        }
+
+        #stars {
+            position: relative;
+            background: transparent;
+            width: 200rem;
+            height: 200rem;
+        }
+
+        #stars::after {
+            content: "";
+            position: absolute;
+            top: -10rem;
+            left: -100rem;
+            width: 100%;
+            height: 100%;
+            animation: animStarRotate 90s linear infinite;
+        }
+
+        #stars::after {
+            background-image: radial-gradient(#ffffff 1px, transparent 1%);
+            background-size: 50px 50px;
+        }
+
+        #stars::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 170%;
+            height: 500%;
+            animation: animStar 60s linear infinite;
+        }
+
+        #stars::before {
+            background-image: radial-gradient(#ffffff 1px, transparent 1%);
+            background-size: 50px 50px;
+            opacity: 0.5;
+        }
+
+        @keyframes animStar {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-135rem);
+            }
+        }
+
+        @keyframes animStarRotate {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes gradient_301 {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes pulse_3011 {
+            0% {
+                transform: scale(0.75);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+            }
+
+            100% {
+                transform: scale(0.75);
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="headline">Number Guessing Game</h1>
+    <div class="container">
+        <p class="instruction">Guess a Number Between 1 - 1000</p>
+        <p class="congratulation"></p>
+        <p class="score"></p>
+        <p class="correct"></p>
+        <input type="number" class="number" placeholder="Enter Your Number : ">
+        <button class="button">Enter</button>
+        <p class="suggestion"></p>
+        <!-- <p class="finish"></p> -->
+        <button class="btn" style="display: none;">
+            <strong>PLAY AGAIN</strong>
+            <div id="container-stars">
+                <div id="stars"></div>
+            </div>
+
+            <div id="glow">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </button>
+
+    </div>
+    <p class="name">Designed by RD</p>
+
+
+    
+    <script>
+        const inputbox = document.querySelector(".number");
+        const celebrate = document.querySelector(".congratulation");
+        const score = document.querySelector(".score");
+        const suggestion = document.querySelector(".suggestion");
+        const correct = document.querySelector(".correct");
+        const button = document.querySelector(".button");
+        const playAgainBtn = document.querySelector(".btn");
+
+        let num = Math.floor(Math.random() * 100) + 1;
+        let count = 0;
+        let gameOver = false;
+
+        const checkGuess = () => {
+            let i = Number.parseInt(inputbox.value);
+
+            if (isNaN(i)) {
+                suggestion.innerHTML = "Please enter a valid number.";
+                suggestion.classList.add("show");
+                setTimeout(() => suggestion.classList.remove("show"), 1000);
+                return;
+            }
+
+            count++;
+            if (i === num) {
+                gameOver = true;
+                celebrate.innerHTML = "🎉✨ CONGRATULATIONS ✨🎉";
+                suggestion.innerHTML = "You guessed the correct number👌";
+                correct.innerHTML = "The Number is: " + num;
+                score.innerHTML = "Your Score: " + (100 - count);
+                inputbox.value = "";
+                playAgainBtn.style.display = "block";
+                suggestion.classList.add('show');
+                setTimeout(() => {
+                    suggestion.classList.remove('show');
+                }, 10000);
+            } else if (i > num) {
+                suggestion.innerHTML = "Too High 😶‍🌫️. Try again!";
+                inputbox.value = "";
+                suggestion.classList.add('show');
+                setTimeout(() => {
+                    suggestion.classList.remove('show');
+                }, 1000);
+            } else {
+                suggestion.innerHTML = "Too Low 🤐. Try again!";
+                inputbox.value = "";
+                suggestion.classList.add('show');
+                setTimeout(() => {
+                    suggestion.classList.remove('show');
+                }, 1000);
+            }
+
+        };
+
+
+        const resetGame = () => {
+            num = Math.floor(Math.random() * 1000) + 1;
+            count = 0;
+            gameOver = false;
+            celebrate.innerHTML = "";
+            suggestion.innerHTML = "";
+            correct.innerHTML = "";
+            score.innerHTML = "";
+            inputbox.value = "";
+            playAgainBtn.style.display = "none";
+        };
+
+        button.addEventListener("click", () => {
+            if (!gameOver) {
+                checkGuess();
+            }
+        });
+
+        inputbox.addEventListener("keydown", (event) => {
+            if (!gameOver && event.key === "Enter") {
+                checkGuess();
+            }
+        });
+
+        playAgainBtn.addEventListener("click", () => {
+            resetGame();
+        });
+    
+    </script>
+</body>
+
+</html>
