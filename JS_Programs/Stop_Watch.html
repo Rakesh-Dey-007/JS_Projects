@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("https://wallpapers.com/images/featured/dark-theme-background-q62o6998n8bqxzrf.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stopwatch {
+            background: rgba(255, 255, 255, 0.2);
+            width: 90%;
+            max-width: 400px;
+            padding: 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10 10 rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .stopwatch h1 {
+            /* margin-top: 20px; */
+            font-size: 60px;
+            font-weight: bold;
+            font-family:Arial, Helvetica, sans-serif;
+            letter-spacing: 3px;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .buttons i {
+            font-size: 30px;
+            margin: 20px 20px 0 20px;
+            cursor: pointer;
+        }
+
+        #stop {
+            color: cyan;
+            margin-right: 28px;
+        }
+
+        #play {
+            color: rgb(255, 166, 0);
+            font-size: 35px;
+        }
+
+        #reset {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stopwatch">
+        <h1 id="Time">00:00:00</h1>
+        <div class="buttons">
+            <i class="fa-solid fa-stop" id="stop" onclick="watchStop()"></i>
+            <i class="fa-solid fa-play" id="play" onclick="watchStart()"></i>
+            <i class="fa-solid fa-rotate-right" id="reset" onclick="watchReset()"></i>
+        </div>
+    </div>
+
+    <script>
+        let [seconds, minutes, hours] = [0, 0, 0];
+        let Time = document.getElementById("Time");
+        let Timer = null;
+
+        function stopwatch() {
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minutes++;
+                if (minutes == 60) {
+                    minutes = 0;
+                    hours++;
+                }
+            }
+            let hur = hours < 10 ? "0" + hours : hours;
+            let min = minutes < 10 ? "0" + minutes : minutes;
+            let sec = seconds < 10 ? "0" + seconds : seconds;
+
+            Time.innerHTML = hur + ":" + min + ":" + sec;
+        }
+
+        function watchStart() {
+            if (Timer === null) {
+                Timer = setInterval(stopwatch, 1000);
+            }
+        }
+        function watchStop(){
+            clearInterval(Timer);
+            Timer = null;
+        }
+        function watchReset(){
+            clearInterval(Timer);
+            Timer = null;
+            [seconds, minutes, hours] = [0, 0, 0];
+            Time.innerHTML = "00:00:00";
+        }
+    </script>
+</body>
+
+</html>
