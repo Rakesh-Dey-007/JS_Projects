@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circular Progress Bar</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif
+        }
+
+        body {
+            background: #bfcddd;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skill {
+            width: 160px;
+            height: 160px;
+            position: relative;
+        }
+
+        .outer {
+            width: 160px;
+            height: 160px;
+            padding: 20px;
+            border-radius: 50%;
+            box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+                -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+        }
+
+        .inner {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+                inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+                -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+                0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+                0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .number {
+            font-family: sans-serif;
+            font-weight: 600;
+            font-size: 22px;
+            color: #555;
+        }
+
+        circle {
+            fill: none;
+            stroke-width: 20px;
+            stroke: url(#GradientColor);
+            stroke-dasharray: 472;
+            stroke-dashoffset: 472;
+            animation: round 2s linear forwards;
+        }
+
+        svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        @keyframes round {
+            100% {
+                stroke-dashoffset: 165;
+            }
+        }
+
+
+        h1 {
+            position: absolute;
+            top: 20%;
+        }
+
+        .one {
+            letter-spacing: 1px;
+            word-spacing: 3px;
+            font-family: sans-serif;
+            font-size: 40px;
+            border-bottom: 3px solid #e91e63;
+            border-radius: 7px;
+            margin-right: 5px;
+        }
+
+        .two {
+            letter-spacing: 1px;
+            word-spacing: 3px;
+            font-family: sans-serif;
+            font-size: 40px;
+            border-radius: 7px;
+            border-bottom: 3px solid #673ab7;
+        }
+    </style>
+</head>
+
+<body>
+    <h1><span class="one">Circular</span> <span class="two">Progress</span></h1>
+    <div class="skill">
+        <div class="outer">
+            <div class="inner">
+                <div class="number">65%</div>
+            </div>
+        </div>
+
+        <svg xmlns="https://wwww.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+            <defs>
+                <linearGradient id="GradientColor">
+                    <stop offset="0%" stop-color="#e91e63" />
+                    <stop offset="100%" stop-color="#673ab7" />
+                </linearGradient>
+            </defs>
+            <circle cx="80" cy="80" r="70" stroke-linecap="round" />
+        </svg>
+    </div>
+
+
+    <script>
+        let number = document.querySelector(".number");
+        let counter = 0;
+        setInterval(() => {
+            if (counter == 65) {
+                clearInterval();
+            }
+            else {
+                counter++;
+                number.innerHTML = counter + "%";
+            }
+        }, 30);
+
+    </script>
+</body>
+
+</html>
