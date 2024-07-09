@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag & Drop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            background: #0b0423;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #left,
+        #right {
+            width: 300px;
+            min-height: 400px;
+            margin: 20px;
+            border: 1px dashed white;
+
+        }
+
+        .list {
+            background: #e91e63;
+            height: 60px;
+            margin: 30px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            cursor: grab;
+            border-radius: 5px;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            letter-spacing: 1px;
+        }
+
+        .list i {
+            margin: 10px 15px;
+            font-size: 25px;
+        }
+
+        .content1,
+        .content2 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content1 p {
+            color: white;
+            font-size: 22px;
+            letter-spacing: 1px;
+            margin-left: 25px;
+            margin-bottom: -10px;
+            color: #e91e63;
+            ;
+        }
+
+        .content2 p {
+            color: #15d84f;
+            font-size: 22px;
+            letter-spacing: 1px;
+            margin-left: 25px;
+            margin-bottom: -10px;
+        }
+
+        #right .list {
+            background: #15d84f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content1">
+        <p>Pending Task</p>
+        <div id="left">
+            <div class="list" draggable="true"><i class="fa-solid fa-pen-to-square"></i>Tast no. 1</div>
+            <div class="list" draggable="true"><i class="fa-solid fa-pen-to-square"></i>Tast no. 2</div>
+            <div class="list" draggable="true"><i class="fa-solid fa-pen-to-square"></i>Tast no. 3</div>
+            <div class="list" draggable="true"><i class="fa-solid fa-pen-to-square"></i>Tast no. 4</div>
+        </div>
+    </div>
+    <div class="content2">
+        <p>Completed Task</p>
+        <div id="right">
+            <div class="list" draggable="true" style="display: none;"></div>
+        </div>
+    </div>
+
+
+
+    <script>
+        let lists = document.getElementsByClassName("list");
+        let rightBox = document.getElementById("right");
+        let leftBox = document.getElementById("left");
+
+
+        for (item of lists) {
+            item.addEventListener("dragstart", function (e) {
+                let selected = e.target;
+
+                rightBox.addEventListener("dragover", function (e) {
+                    e.preventDefault();
+                });
+                rightBox.addEventListener("drop", function (e) {
+                    rightBox.appendChild(selected);
+                    selected = null;
+                })
+                leftBox.addEventListener("dragover", function (e) {
+                    e.preventDefault();
+                });
+                leftBox.addEventListener("drop", function (e) {
+                    leftBox.appendChild(selected);
+                    selected = null;
+                })
+            })
+
+        }
+    </script>
+</body>
+
+</html>
