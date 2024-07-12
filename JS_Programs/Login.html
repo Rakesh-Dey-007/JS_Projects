@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lgin Page Designed by RD</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, black, rgb(9, 9, 44));
+            /* background-image: url("https://images6.alphacoders.com/901/thumb-1920-901701.jpg"); */
+            background-image: url("image/panther.jpg");
+            background-position:left;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form {
+            margin-right: 15%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 20px;
+            position: relative;
+            background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+            background-size: 200% 100%;
+            animation: gradient 5s ease infinite;
+            color: #fff;
+            border: 2px solid transparent;
+            box-shadow: 0px 0px 5px black,
+                0 0 25px black,
+                0 0 50px black,
+                0 0 100px black;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            color: #00bfff;
+        }
+
+        .title::before {
+            width: 18px;
+            height: 18px;
+        }
+
+        .title::after {
+            width: 18px;
+            height: 18px;
+            animation: pulse 1.5s linear infinite;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        .title::before,
+        .title::after {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            left: 0px;
+            background-color: #00bfff;
+        }
+
+        .message,
+        .signin {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .signin {
+            text-align: center;
+        }
+
+        .signin a:hover {
+            text-decoration: underline blue;
+            color: blue;
+        }
+
+        .signin a {
+            color: #00bfff;
+        }
+
+        .flex {
+            display: flex;
+            width: 100%;
+            gap: 6px;
+        }
+
+        .form label {
+            position: relative;
+        }
+
+        .form label .input {
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            padding: 20px 05px 05px 10px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+        }
+
+        .form label .input+span {
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            left: 10px;
+            top: 0px;
+            font-size: 0.9em;
+            cursor: text;
+            transition: 0.3s ease;
+        }
+
+        .form label .input:placeholder-shown+span {
+            top: 12.5px;
+            font-size: 0.9em;
+        }
+
+        .form label .input:focus+span,
+        .form label .input:valid+span {
+            color: #00bfff;
+            top: 0px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .input {
+            font-size: medium;
+        }
+
+        .submit {
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transform: .3s ease;
+            background-color: #00bfff;
+        }
+
+        .submit:hover {
+            background-color: blue;
+        }
+
+
+
+        @media only screen and (max-width:450px) {
+            .form {
+                max-width: 350px;
+                margin-right: 0%;
+            }
+
+            .popup {
+                width: 90%;
+                /* Increase the width for smaller mobile screens */
+                padding: 0 10px 10px;
+                /* Adjust the padding for smaller mobile screens */
+            }
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-size: larger;
+            color: yellow;
+            font-family: 'Times New Roman', Times, serif;
+            margin-top: 10px;
+            cursor: default;
+            /* margin-right: 5%; */
+            visibility: hidden;
+        }
+
+        .popup {
+            position: absolute;
+            /* width: 400px; */
+            background: #fff;
+            border-radius: 5px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)scale(0.1);
+            text-align: center;
+            /* padding: 0 30px 30px; */
+            color: #333;
+            transition: 0.5s;
+            visibility: hidden;
+            z-index: 100;
+            width: 80%;
+            /* Change the width to a percentage */
+            max-width: 400px;
+            /* Keep the max-width for larger screens */
+            padding: 0 20px 20px;
+        }
+
+        .open_popup {
+            visibility: visible;
+            transform: translate(-50%, -50%)scale(1);
+        }
+
+
+        .popup img {
+            width: 100px;
+            margin-top: -28px;
+            border-radius: 50%;
+        }
+
+        .popup h1 {
+            margin: 10px 0 10px;
+        }
+
+        .popup p {
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .popup button {
+            margin-top: 20px;
+            padding: 8px 90px;
+            background: linear-gradient(to top, rgb(0, 110, 0), rgb(0, 255, 0));
+            color: #242424;
+            border: 0;
+            outline: 0;
+            border-radius: 5px;
+            font-size: 24px;
+            transition: 0.3s;
+        }
+
+        .popup button:hover {
+            color: black;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <form class="form">
+        <p class="title">Login </p>
+        <p class="message">Signup now and Explore us. </p>
+        <div class="flex">
+            <label>
+                <input class="input" type="text" placeholder="" required>
+                <span>Firstname</span>
+            </label>
+
+            <label>
+                <input class="input" type="text" placeholder="" required>
+                <span>Lastname</span>
+            </label>
+        </div>
+
+        <label>
+            <input class="input" type="email" placeholder="" required>
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input class="input" type="password" placeholder="" required>
+            <span>Password</span>
+        </label>
+        <label>
+            <input class="input" type="text" placeholder="" required>
+            <span>Confirm password</span>
+        </label>
+        <button class="submit" onclick="open_popup()">Submit</button>
+        <p class="signin">Already have an acount? <a href="#">Signin</a> </p>
+    </form>
+    <div class="popup">
+        <img src="image/right-removebg-preview.png">
+        <h1>Thank You</h1>
+        <p>Your details has been submitted successfully. Thanks!</p>
+        <button type="button" onclick="close_popup()">OK</button>
+    </div>
+
+    <footer>
+        <p>Designed by RD
+        <p>
+    </footer>
+
+    <script>
+        let popup = document.querySelector('.popup');
+        let form = document.querySelector(".form")
+
+        function open_popup() {
+            if (validateForm()) {
+                popup.classList.add("open_popup");
+                form.style.visibility = "hidden";
+                form.reset();
+                document.querySelector("footer").style.visibility = "hidden";
+            }
+        }
+
+        function close_popup() {
+            popup.classList.remove("open_popup");
+            form.style.visibility = "visible";
+        }
+
+        function validateForm() {
+            let inputs = document.querySelectorAll('.input');
+            for (let i = 0; i < inputs.length; i++) {
+                if (inputs[i].value === "") {
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
