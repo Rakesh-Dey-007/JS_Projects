@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top News</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, black, rgb(15, 0, 70));
+            background-image: url("https://miro.medium.com/v2/resize:fit:1400/1*pyJk9O6xt08Xx3oYtz8Mlw.jpeg");
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 35%;
+            height: 85%;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .tabs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            background: #e4e9fd;
+        }
+
+        .tabs h2 {
+            text-align: center;
+            padding: 15px 0;
+            cursor: pointer;
+            font-weight: 600;
+            color: rgb(0, 0, 100);
+            transition: 0.5s;
+            background: #e4e9fd;
+        }
+
+        .tabs h2:hover {
+            background: #fff;
+        }
+
+        .tab-contents {
+            background: #fff;
+            padding: 30px 30px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .tab-contents h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #000224;
+        }
+
+        .tab-contents p {
+            color: #000224;
+            font-size: 20px;
+            word-spacing: 3px;
+            line-height: 30px;
+        }
+
+        .tab-contents div {
+            display: none;
+        }
+
+        .tab-contents div.active {
+            display: block;
+        }
+
+        .tabs h2.active {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="tabs">
+            <h2 class="active" style="border-top-left-radius: 10px;">News 1</h2>
+            <h2>News 2</h2>
+            <h2 style="border-top-right-radius: 10px;">News 3</h2>
+        </div>
+        <div class="tab-contents">
+            <div class="active">
+                <h3>Rust : The Rising Threat in Cyberattacks</h3>
+                <p>Rust, a modern programming language, is becoming the weapon of choice for cyberattackers. Ransomware
+                    and malware families like BlackCat, Hive, and RansomExx are leveraging Rust to evade traditional
+                    threat detection and complicate reverse engineering. An estimated 10-15% of ransomware attacks are
+                    now coded in Rust, highlighting the increasing sophistication and adaptability of cyber threats.</p>
+            </div>
+            <div>
+                <h3>Tech Revolution in India : What's Next?</h3>
+                <p>India, a burgeoning hub of technological innovation, stands at the cusp of an AI revolution. With a
+                    rapidly growing tech-savvy population and increasing investments in GCCs, India is poised to become
+                    a global technology and services hub, driving economic growth and innovation in the years to come.
+                    Fueled by government initiatives and a vibrant startup ecosystem.</p>
+            </div>
+            <div>
+                <h3>The Future of Technology in India : Trends to Watch</h3>
+                <p>India's tech landscape is evolving rapidly, driven by advancements in AI, IoT, and 5G. Emerging
+                    trends include increased adoption of cloud computing, cybersecurity, and digital payments. The
+                    government's push for Digital India and Startup India initiatives is further fueling innovation,
+                    making India a hotbed for tech startups and investments. With a growing talent pool and increasing
+                    foreign investments.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tabs h2');
+        const contents = document.querySelectorAll('.tab-contents div');
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                contents.forEach((content) => {
+                    content.classList.remove('active');
+                });
+                tabs.forEach((tab) => {
+                    tab.classList.remove('active');
+                });
+                contents[index].classList.add('active');
+                tabs[index].classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
