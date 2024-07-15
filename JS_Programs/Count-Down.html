@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janmashtami Countdown</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            overflow: hidden;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(75deg,  rgb(22, 0, 48),black,black);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        nav {
+            width: 100%;
+            padding: 0 60px;
+        }
+
+        .name {
+            height: 35px;
+            margin: 20px 10px 10px 10px;
+        }
+
+        .content {
+            margin-top: 70px;
+            margin-left: 70px;
+            width: 50%;
+        }
+
+        .content h1 {
+            color: wheat;
+            font-size: 40px;
+        }
+
+        .content h1 span {
+            color: cyan;
+            font-size: 50px;
+            letter-spacing: 2px;
+            word-spacing: 5px;
+        }
+
+        .content h2 {
+            margin-top: 20px;
+            color: whitesmoke;
+            font-size: 30px;
+        }
+
+        .content h2 i {
+            text-align: center;
+            color: whitesmoke;
+            margin-left: 5px;
+            font-size: 30px;
+        }
+
+        .time {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .time div {
+            flex-basis: 100px;
+            color: white;
+        }
+
+        .time div p {
+            font-size: 60px;
+        }
+
+        .time div span {
+            margin-left: 7px;
+            font-size: 20px;
+            margin-top: 10px;
+            color: #fffb00;
+        }
+
+        .button {
+            margin-top: 30px;
+            padding: 0.7em 2em;
+            border: none;
+            outline: none;
+            color: rgb(255, 255, 255);
+            background: #111;
+            cursor: pointer;
+            position: relative;
+            z-index: 0;
+            border-radius: 10px;
+            user-select: none;
+            transition: 0.3s;
+            font-size: 18px;
+        }
+
+        .button:before {
+            content: "";
+            background: linear-gradient(45deg,
+                    #ff0000,
+                    #ff7300,
+                    #fffb00,
+                    #48ff00,
+                    #00ffd5,
+                    #002bff,
+                    #7a00ff,
+                    #ff00c8,
+                    #ff0000);
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            animation: glowing-button 20s linear infinite;
+            transition: opacity 0.3s ease-in-out;
+            border-radius: 10px;
+        }
+
+        @keyframes glowing-button {
+            0% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 400% 0;
+            }
+
+            100% {
+                background-position: 0 0;
+            }
+        }
+
+        .button:after {
+            z-index: -1;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #222;
+            left: 0;
+            top: 0;
+            border-radius: 10px;
+        }
+
+        .button:hover {
+            color: cyan;
+        }
+
+        .btn2 {
+            margin-left: 70px;
+        }
+
+        .krishna {
+            position: absolute;
+            top: 10%;
+            right: 5%;
+            width: 40%;
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4500;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <img src="images/name.png" class="name">
+    </nav>
+    <div class="content">
+        <h1>Best Wishes for a Joyous <br> <span>Krishna Janmashtami</span></h1>
+        <h2>Count Down Started Now <i class="fa-solid fa-right-long"></i></h2>
+        <img src="images/Krishna Janmashtomi.jpg" class="krishna">
+        <div class="time">
+            <div>
+                <p id="days">00</p>
+                <span>Days</span>
+            </div>
+            <div>
+                <p id="hours">00</p>
+                <span>Hours</span>
+            </div>
+            <div>
+                <p id="minutes">00</p>
+                <span>Minutes</span>
+            </div>
+            <div>
+                <p id="seconds">00</p>
+                <span>Seconds</span>
+            </div>
+        </div>
+        <a href="Janmashtomi.html">
+        <button type="button" class="button btn1">Learn More</button></a>
+        <button type="button" class="button btn2" onclick="startCelebration()">Celebrate</button>
+    </div>
+
+    <div class="confetti-container"></div>
+
+    <script>
+        let countDownDate = new Date("Aug 26, 2024 00:00:00").getTime();
+
+        // Function to add leading zero
+        function addLeadingZero(number) {
+            return number < 10 ? '0' + number : number;
+        }
+
+        let x = setInterval(function () {
+            let now = new Date().getTime();
+            let distance = countDownDate - now;
+
+            let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = addLeadingZero(days);
+            document.getElementById("hours").innerHTML = addLeadingZero(hours);
+            document.getElementById("minutes").innerHTML = addLeadingZero(minutes);
+            document.getElementById("seconds").innerHTML = addLeadingZero(seconds);
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
+
+        function startCelebration() {
+            const confettiContainer = document.querySelector('.confetti-container');
+
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}vw`;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confettiContainer.appendChild(confetti);
+
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000); // Remove confetti after it falls
+            }
+
+            // Create a large number of confetti pieces
+            for (let i = 0; i < 100; i++) {
+                setTimeout(createConfetti, i * 100);
+            }
+        }
+    </script>
+</body>
+
+</html>
