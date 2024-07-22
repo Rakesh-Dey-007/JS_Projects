@@ -1,0 +1,131 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+:root{
+    --primary-color: #edf2fc;
+    --secondary-color: #212121;
+}
+.dark-theme{
+    --primary-color: #000106;
+    --secondary-color: #fff;
+}
+.hero{
+    height:100vh;
+    width:100%;
+    background:var(--primary-color);
+    font-family: sans-serif;
+    position: relative;
+}
+nav{
+    width:85%;
+    margin: auto;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width:170px;
+    cursor: pointer;
+    height: 40px;
+}
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+nav ul li a {
+    text-decoration: none;
+    color:var(--secondary-color);
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: 0.2s;
+}
+nav ul li a:hover{
+    color: #ff4321;
+}
+
+#icon{
+    font-size: 25px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+nav ul{
+    flex: 1;
+    text-align: right;
+}
+
+.info{
+    margin-left: 8%;
+    margin-top: 10%;
+}
+.info h1{
+    font-size: 70px;
+    color:var(--secondary-color);
+    margin-bottom: 20px;
+}
+span{
+    color:#ff4321;
+}
+.info p{
+    color: #606163;
+    line-height: 22px;
+    font-size: 18px;
+}
+.info a{
+    background: var(--secondary-color);
+    padding: 12px 18px;
+    text-decoration: none;
+    display: inline-block;
+    margin:30px 0;
+    border-radius: 5px;
+    color:var(--primary-color);
+    transition: 0.3s;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.info a:hover{
+    color: #ff4321;
+}
+.img-box{
+    width:45%;
+    height:80%;
+    position: absolute;
+    bottom: 0;
+    right: 100px;
+}
+.img-box img{
+    height: 100%;
+    position:absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-40%);
+    transition: bottom 1s, left 1s;
+}
+.img-box:hover .bg-img{
+    bottom:40px;
+}
+.img-box:hover .main-img{
+    left: 54%;
+}
+.social-links{
+    margin-left: 8%;
+    margin-top: 50px;
+}
+.social-links a{
+    font-size: 30px;
+    color: #606163;
+    margin-right: 20px;
+    transition: 0.3s;
+}
+.social-links a:hover{
+    color:#ff4321;
+}
+
+
