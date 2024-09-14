@@ -1,1 +1,0 @@
-Hello friends, this is a sample text file for Python File_Management Project.
