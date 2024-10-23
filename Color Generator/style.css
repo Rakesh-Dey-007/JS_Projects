@@ -1,0 +1,174 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Chakra Petch", sans-serif;
+    /* color: white; */
+    font-weight: bold;
+}
+
+body {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+    /* background: #8A6CFF; */
+    background: linear-gradient(30deg, rgb(0, 0, 121), black);
+}
+
+.wrapper {
+    width: 450px;
+    padding: 25px;
+    /* background: #71717A; */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    /* box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06); */
+    backdrop-filter: blur(5px);
+    /* box-shadow: 0px 25px 50px rgba(255, 255, 255, 0.1); */
+    box-shadow: 0px 0px 50px black;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.wrapper .gradient-box {
+    height: 220px;
+    width: 100%;
+    border-radius: 7px;
+    background: linear-gradient(to left top, #fbff00, #00ffea);
+}
+
+.wrapper .row {
+    display: flex;
+    margin: 20px 0;
+    justify-content: space-between;
+}
+
+.options p {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.row :where(.column, button) {
+    width: calc(100% / 2 - 12px);
+}
+
+.options .select-box {
+    border-radius: 5px;
+    padding: 10px 15px;
+    border: 1px solid #aaa;
+}
+
+.select-box select {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.12rem;
+    background: none;
+}
+
+.options .palette {
+    margin-left: 60px;
+}
+
+.palette input {
+    height: 41px;
+    /* background: rgba(255,255,255,.2); */
+    background: transparent;
+    width: calc(100% / 2 - 20px);
+    border-color: transparent;
+}
+
+.palette input:last-child {
+    margin-left: 6px;
+}
+
+.wrapper textarea {
+    width: 100%;
+    color: #222222;
+    font-size: 1.05rem;
+    resize: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.buttons button {
+    padding: 15px 0;
+    border: none;
+    outline: none;
+    /* color: #fff; */
+    margin: 0 0 -15px;
+    font-size: 1.09rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.buttons .refresh {
+    /* background: #4c5358; */
+    background: cyan;
+}
+
+.buttons .refresh:hover {
+    background: rgb(0, 131, 131);
+}
+
+.buttons .copy {
+    background: yellow;
+}
+
+.buttons .copy:hover {
+    background: rgb(129, 129, 0);
+}
+
+.author{
+    color: cyan;
+    position: absolute;
+    bottom: -5px;
+}
+
+.heading{
+    color: cyan;
+    position: absolute;
+    top: -3px;
+}
+
+@media screen and (max-width: 432px) {
+    .wrapper {
+        padding: 25px 20px;
+    }
+
+    .row :where(.column, button) {
+        width: calc(100% / 2 - 8px);
+    }
+
+    .options .select-box {
+        padding: 8px 15px;
+    }
+
+    .options .palette {
+        margin-left: 40px;
+    }
+
+    .options .colors {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .palette input {
+        width: calc(100% / 2 - 5px);
+    }
+
+    .palette input:last-child {
+        margin-left: 0;
+    }
+}
